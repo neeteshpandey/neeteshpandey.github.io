@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Section Preview – Dr. Neetesh Pandey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f7f4ef;
+      --ink:       #1a1612;
+      --muted:     #6b6259;
+      --accent:    #b5451b;
+      --accent2:   #2d6a8f;
+      --line:      #d9cfc4;
+      --card-bg:   #ffffff;
+      --shadow:    0 4px 24px rgba(26,22,18,0.09);
+      --radius:    12px;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: var(--ink);
+      padding: 60px 20px 80px;
+    }
+
+    /* ── Section heading ── */
+    .news-section { max-width: 960px; margin: 0 auto; }
+
+    .news-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .news-section .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-style: italic;
+      margin-bottom: 56px;
+    }
+
+    /* ── Timeline wrapper ── */
+    .timeline {
+      position: relative;
+      padding: 0 0 20px;
+    }
+
+    /* Central vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--line) 6%, var(--line) 94%, transparent);
+      transform: translateX(-50%);
+    }
+
+    /* ── Each item ── */
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 48px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp 0.55s ease forwards;
+    }
+
+    .tl-item:nth-child(1) { animation-delay: 0.05s; }
+    .tl-item:nth-child(2) { animation-delay: 0.18s; }
+    .tl-item:nth-child(3) { animation-delay: 0.31s; }
+    .tl-item:nth-child(4) { animation-delay: 0.44s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LEFT items: card on left, dot in center */
+    .tl-item.left  { flex-direction: row; }
+    /* RIGHT items: dot in center, card on right */
+    .tl-item.right { flex-direction: row-reverse; }
+
+    /* Card */
+    .tl-card {
+      width: calc(50% - 36px);
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 26px 20px;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tl-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(26,22,18,0.14);
+    }
+
+    /* Arrow pointer toward center line */
+    .tl-item.left  .tl-card::after,
+    .tl-item.right .tl-card::after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      border: 10px solid transparent;
+    }
+    .tl-item.left .tl-card::after {
+      right: -20px;
+      border-left-color: var(--card-bg);
+    }
+    .tl-item.right .tl-card::after {
+      left: -20px;
+      border-right-color: var(--card-bg);
+    }
+
+    /* Center dot + spacer */
+    .tl-center {
+      width: 72px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+    }
+
+    .tl-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 3px solid var(--card-bg);
+      box-shadow: 0 0 0 2px var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Tag colors */
+    .tl-item:nth-child(1) .tl-dot { box-shadow: 0 0 0 2px var(--accent); }
+    .tl-item:nth-child(2) .tl-dot { box-shadow: 0 0 0 2px var(--accent2); }
+    .tl-item:nth-child(3) .tl-dot { box-shadow: 0 0 0 2px #7a5c9e; }
+    .tl-item:nth-child(4) .tl-dot { box-shadow: 0 0 0 2px #2e8b6e; }
+
+    /* Card internals */
+    .tl-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .tag-accepted  { background: #fde8e0; color: var(--accent); }
+    .tag-oral      { background: #ddeef8; color: var(--accent2); }
+    .tag-presented { background: #ede8f5; color: #7a5c9e; }
+
+    .tl-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 7px;
+    }
+
+    .tl-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .tl-venue {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tl-venue strong {
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ── Responsive: stack on mobile ── */
+    @media (max-width: 640px) {
+      .timeline::before { left: 18px; }
+
+      .tl-item.left,
+      .tl-item.right { flex-direction: row; }
+
+      .tl-center { width: 36px; padding-top: 18px; justify-content: flex-start; }
+
+      .tl-card { width: 100%; }
+
+      .tl-item.left  .tl-card::after,
+      .tl-item.right .tl-card::after {
+        right: auto; left: -20px;
+        border-left-color: transparent;
+        border-right-color: var(--card-bg);
+      }
+    }
+
+    /* ── Add-news button (for future use) ── */
+    .add-news-hint {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .add-news-hint p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NEWS SECTION  —  paste this <section> block into index.html
+     between the About section and Education section
+============================================================ -->
+
+<section id="news" aria-labelledby="news-title" class="news-section">
+  <h2 id="news-title">News</h2>
+  <p class="section-sub">Recent highlights — conferences, acceptances &amp; presentations</p>
+
+  <div class="timeline">
+
+    <!-- 1 · AAIC 2026 abstract accepted -->
+    <div class="tl-item left">
+      <div class="tl-card">
+        <span class="tl-tag tag-accepted">Abstract Accepted</span>
+        <p class="tl-date">July 12–15, 2026 · London, United Kingdom</p>
+        <p class="tl-title">Cross-Ancestral Discovery of EMC7 Rare Variants as Determinants of Multidimensional Cognitive Performance</p>
+        <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2026</strong></p>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div style="width:calc(50% - 36px)"></div>
+    </div>
+
+    <!-- 2 · AAIC 2025 oral talk -->
+    <div class="tl-item right">
+      <div class="tl-card">
+        <span class="tl-tag tag-oral">Oral Talk</span>
+        <p class="tl-date">July 27–31, 2025 · Toronto, Canada &amp; Online</p>
+        <p class="tl-title">Genome-Wide Analyses for Cognitive Performances in Multi-Ethnic Cohorts Identifies Novel Rare Locus PCAT5</p>
+        <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2025</strong></p>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div style="width:calc(50% - 36px)"></div>
+    </div>
+
+    <!-- 3 · ADPD 2025 oral talk -->
+    <div class="tl-item left">
+      <div class="tl-card">
+        <span class="tl-tag tag-oral">Oral Talk</span>
+        <p class="tl-date">April 1–5, 2025 · Vienna, Austria &amp; Online</p>
+        <p class="tl-title">Genome-Wide Meta-Analysis of Cognitive Performances in Hispanics/Latinos Identifies Novel Rare Variant Locus PCAT5</p>
+        <p class="tl-venue"><strong>19th International Conference on Alzheimer's &amp; Parkinson's Diseases (ADPD 2025)</strong></p>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div style="width:calc(50% - 36px)"></div>
+    </div>
+
+    <!-- 4 · AAIC 2024 presentation -->
+    <div class="tl-item right">
+      <div class="tl-card">
+        <span class="tl-tag tag-presented">Presentation</span>
+        <p class="tl-date">July 28 – Aug 1, 2024 · Philadelphia, USA &amp; Online</p>
+        <p class="tl-title">p-tau217 in a Large Peruvian Cohort Phenotyped for Alzheimer's Disease</p>
+        <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2024</strong> · Blood-based biomarker research</p>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div style="width:calc(50% - 36px)"></div>
+    </div>
+
+  </div><!-- /.timeline -->
+
+  <div class="add-news-hint">
+    <p>More news items will be added here as they come.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -22,6 +22,7 @@
   <nav aria-label="Primary">
     <ul>
       <li><a href="#about" aria-current="page">About</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#publications">Publications</a></li>
@@ -58,6 +59,123 @@
         statistical signal to biological function.
       </p>
     </div>
+  </section>
+
+  <!-- News -->
+  <section id="news" aria-labelledby="news-title">
+    <h2 id="news-title">News</h2>
+
+    <style>
+      /* ── Timeline ── */
+      .timeline { position: relative; padding: 0 0 20px; max-width: 860px; margin: 0 auto; }
+      .timeline::before {
+        content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+        width: 2px; background: linear-gradient(to bottom, transparent, #d9cfc4 6%, #d9cfc4 94%, transparent);
+        transform: translateX(-50%);
+      }
+      .tl-item { display: flex; align-items: flex-start; margin-bottom: 44px; position: relative;
+        opacity: 0; transform: translateY(24px); animation: tlFadeUp 0.5s ease forwards; }
+      .tl-item:nth-child(1){animation-delay:0.05s} .tl-item:nth-child(2){animation-delay:0.18s}
+      .tl-item:nth-child(3){animation-delay:0.31s} .tl-item:nth-child(4){animation-delay:0.44s}
+      @keyframes tlFadeUp { to { opacity:1; transform:translateY(0); } }
+      .tl-item.tl-left  { flex-direction: row; }
+      .tl-item.tl-right { flex-direction: row-reverse; }
+      .tl-card {
+        width: calc(50% - 36px); background: #fff; border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 20px 24px 18px;
+        position: relative; transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .tl-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.13); }
+      .tl-item.tl-left  .tl-card::after,
+      .tl-item.tl-right .tl-card::after {
+        content: ''; position: absolute; top: 22px; border: 9px solid transparent;
+      }
+      .tl-item.tl-left  .tl-card::after { right: -18px; border-left-color: #fff; }
+      .tl-item.tl-right .tl-card::after { left: -18px;  border-right-color: #fff; }
+      .tl-center { width: 72px; flex-shrink: 0; display: flex; justify-content: center; padding-top: 18px; }
+      .tl-dot { width: 16px; height: 16px; border-radius: 50%; background: #fff;
+        border: 3px solid #fff; position: relative; z-index: 1; }
+      .tl-item:nth-child(1) .tl-dot { box-shadow: 0 0 0 2px #b5451b; }
+      .tl-item:nth-child(2) .tl-dot { box-shadow: 0 0 0 2px #2d6a8f; }
+      .tl-item:nth-child(3) .tl-dot { box-shadow: 0 0 0 2px #7a5c9e; }
+      .tl-item:nth-child(4) .tl-dot { box-shadow: 0 0 0 2px #2e8b6e; }
+      .tl-spacer { width: calc(50% - 36px); }
+      .tl-tag {
+        display: inline-block; font-size: 0.67rem; font-weight: 700;
+        letter-spacing: 0.07em; text-transform: uppercase;
+        padding: 2px 8px; border-radius: 20px; margin-bottom: 9px;
+      }
+      .tag-accepted  { background: #fde8e0; color: #b5451b; }
+      .tag-oral      { background: #ddeef8; color: #2d6a8f; }
+      .tag-presented { background: #ede8f5; color: #7a5c9e; }
+      .tl-date { font-size: 0.77rem; color: #6b6259; font-style: italic; margin-bottom: 6px; }
+      .tl-title { font-size: 0.97rem; font-weight: 600; line-height: 1.45; margin-bottom: 7px; }
+      .tl-venue { font-size: 0.84rem; color: #6b6259; line-height: 1.5; }
+      .tl-venue strong { color: #1a1612; font-weight: 600; }
+      .tl-news-hint { text-align: center; font-size: 0.8rem; color: #999; font-style: italic; margin-top: 8px; }
+      @media (max-width: 620px) {
+        .timeline::before { left: 16px; }
+        .tl-item.tl-left, .tl-item.tl-right { flex-direction: row; }
+        .tl-center { width: 32px; justify-content: flex-start; }
+        .tl-card { width: 100%; }
+        .tl-spacer { display: none; }
+        .tl-item.tl-left  .tl-card::after,
+        .tl-item.tl-right .tl-card::after { right: auto; left: -18px; border-left-color: transparent; border-right-color: #fff; }
+      }
+    </style>
+
+    <div class="timeline">
+
+      <!-- 1 · AAIC 2026 abstract accepted -->
+      <div class="tl-item tl-left">
+        <div class="tl-card">
+          <span class="tl-tag tag-accepted">Abstract Accepted</span>
+          <p class="tl-date">July 12–15, 2026 &middot; London, United Kingdom</p>
+          <p class="tl-title">Cross-Ancestral Discovery of EMC7 Rare Variants as Determinants of Multidimensional Cognitive Performance</p>
+          <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2026</strong></p>
+        </div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- 2 · AAIC 2025 oral talk -->
+      <div class="tl-item tl-right">
+        <div class="tl-card">
+          <span class="tl-tag tag-oral">Oral Talk</span>
+          <p class="tl-date">July 27–31, 2025 &middot; Toronto, Canada &amp; Online</p>
+          <p class="tl-title">Genome-Wide Analyses for Cognitive Performances in Multi-Ethnic Cohorts Identifies Novel Rare Locus PCAT5</p>
+          <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2025</strong></p>
+        </div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- 3 · ADPD 2025 oral talk -->
+      <div class="tl-item tl-left">
+        <div class="tl-card">
+          <span class="tl-tag tag-oral">Oral Talk</span>
+          <p class="tl-date">April 1–5, 2025 &middot; Vienna, Austria &amp; Online</p>
+          <p class="tl-title">Genome-Wide Meta-Analysis of Cognitive Performances in Hispanics/Latinos Identifies Novel Rare Variant Locus PCAT5</p>
+          <p class="tl-venue"><strong>19th International Conference on Alzheimer's &amp; Parkinson's Diseases (ADPD 2025)</strong></p>
+        </div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- 4 · AAIC 2024 presentation -->
+      <div class="tl-item tl-right">
+        <div class="tl-card">
+          <span class="tl-tag tag-presented">Presentation</span>
+          <p class="tl-date">July 28 – Aug 1, 2024 &middot; Philadelphia, USA &amp; Online</p>
+          <p class="tl-title">p-tau217 in a Large Peruvian Cohort Phenotyped for Alzheimer's Disease</p>
+          <p class="tl-venue"><strong>Alzheimer's Association International Conference (AAIC) 2024</strong> &middot; Blood-based biomarker research</p>
+        </div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+    </div><!-- /.timeline -->
+    <p class="tl-news-hint">More news will be added as it comes.</p>
   </section>
 
   <!-- Education -->
